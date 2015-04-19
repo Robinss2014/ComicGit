@@ -36,7 +36,42 @@
             <p class="lead">Start your drawings here.</p>
         </div>
     </div><!-- /.container -->
-    <canvas id="canvas" width="500" height="500" style="border:1px solid #aaa"></canvas>
+
+    <!-- main content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-1">
+                <canvas id="canvas" width="500px" height="500px" style="border:1px solid #aaa"></canvas>
+            </div>
+            <div class="col-md-4" style="background-color: yellow">
+                <h4 class="text-center"> Setting Panel</h4>
+                <form>
+                  <div class="form-group">
+                    <label for="exampleInputFile">Upload an image</label>
+                    <input type="file" id="exampleInputFile">
+                    <p class="help-block">Supported image format includes: .jpg/.png/.svg</p>
+                    <button type="submit" class="btn btn-default" id="upload">Upload</button>
+                  </div>
+                  <div class="form-group">
+                    <label for="drawing-line-width">Line width:</label>
+                    <span class="info">10</span><input type="range" value="10" min="1" max="50" id="drawing-line-width">
+                  </div>
+                  <div class="form-group">
+                    <label for="clear-canvas">Clear the canvas</label>
+                    <button class="btn btn-default" id="clear-canvas">Clear</button>
+                  </div>
+                  <div class="form-group">
+                    <label for="save-to-local">Save the image to local disk</label>
+                    <button class="btn btn-default" id="save-to-local">Save</button>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputFile">Save the image to server</label>
+                    <button class="btn btn-default">Save</button>
+                  </div>
+                </form>
+            </div>
+        </div>
+    </div><!-- main content -->
   </body>
 
   <script>
@@ -48,21 +83,48 @@
     // DOM properly initialized (courtesy jquery)
     $(function () {
         
-        // Obtain a canvas drawing surface from fabric.js
-        var canvas = new fabric.Canvas('canvas');
- 
-        // Create a text object. 
-        // Does not display it-the canvas doesn't 
-        // know about it yet.
-        var hi = new fabric.Text('hello, world.', {
-            left: canvas.getWidth() / 2,
-            top: canvas.getHeight() / 2     
+        var $ = function(id){return document.getElementById(id)};
+
+        var canvas = this.__canvas = new fabric.Canvas('canvas', {
+            isDrawingMode: true
         });
-    
-        // Attach it to the canvas object, then (re)display
-        // the canvas.  
-        canvas.add(hi);
+
+        // initial brush width
+        canvas.freeDrawingBrush.width =10;
+        fabric.Object.prototype.transparentCorners = false;
+
+        var upload = $('upload'),
+            drawingLineWidth = $('drawing-line-width'),
+            clearCanvas = $('clear-canvas'),
+            saveToLocal = $('save-to-local');
+
+        drawingLineWidth.onchange = function() {
+            canvas.freeDrawingBrush.width = parseInt(this.value, 10) || 1;
+            this.previousSibling.innerHTML = this.value;
+        };
+
+        upload.onclick = function(){
+            //canvas.style.backgroundImage = 'url('+ url + ')';
+            console.log('not ready');
+        };
+
+        clearCanvas.onclick = function() { 
+            canvas.clear(); 
+        };
+        saveToLocal.onclick = function() {
+            downloadFabric(canvas, 'test');
+        };
                 
     });
+
+    function download(url,name){
+    // make the link. set the href and download. emulate dom click
+      $('<a>').attr({href:url,download:name})[0].click();
+    }
+    function downloadFabric(canvas,name){
+    //  convert the canvas to a data url and download it.
+      download(canvas.toDataURL(),name+'.png');
+    }
+
   </script>
 </html>
