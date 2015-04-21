@@ -48,10 +48,10 @@
                 <form>
                   <div class="form-group">
                     <label for="exampleInputFile">Upload an image</label>
-                    <input type="file" id="exampleInputFile">
+                    <input type="file" name="fileToUpload" id="fileToUpload">
                     <p class="help-block">Supported image format includes: .jpg/.png/.svg</p>
                     <button type="submit" class="btn btn-default" id="upload">Upload</button>
-                  </div>
+                 </div>
                   <div class="form-group">
                     <label for="drawing-line-width">Line width:</label>
                     <span class="info">10</span><input type="range" value="10" min="1" max="50" id="drawing-line-width">
@@ -65,8 +65,8 @@
                     <button class="btn btn-default" id="save-to-local">Save</button>
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputFile">Save the image to server</label>
-                    <button class="btn btn-default">Save</button>
+                    <label for="exampleInputFile">Display the image in another window</label>
+                    <button class="btn btn-default" id="save-to-server">Show</button>
                   </div>
                 </form>
             </div>
@@ -85,9 +85,11 @@
         
         var $ = function(id){return document.getElementById(id)};
 
-        var canvas = this.__canvas = new fabric.Canvas('canvas', {
+        var canvas = new fabric.Canvas('canvas', {
             isDrawingMode: true
         });
+
+        window.canvas = canvas;
 
         // initial brush width
         canvas.freeDrawingBrush.width =10;
@@ -96,7 +98,8 @@
         var upload = $('upload'),
             drawingLineWidth = $('drawing-line-width'),
             clearCanvas = $('clear-canvas'),
-            saveToLocal = $('save-to-local');
+            saveToLocal = $('save-to-local'),
+            saveToServer = $('save-to-server');
 
         drawingLineWidth.onchange = function() {
             canvas.freeDrawingBrush.width = parseInt(this.value, 10) || 1;
@@ -114,6 +117,13 @@
         saveToLocal.onclick = function() {
             downloadFabric(canvas, 'test');
         };
+        // saveToServer.onclick = function(){
+        // }
+        saveToServer.onclick = function() {
+            // downloadFabric(canvas, 'test');
+            // document.html();
+           window.open(canvas.toDataURL());
+        };
                 
     });
 
@@ -125,6 +135,5 @@
     //  convert the canvas to a data url and download it.
       download(canvas.toDataURL(),name+'.png');
     }
-
   </script>
 </html>
