@@ -1,4 +1,4 @@
-ComicGit 
+ComicGit - not finished
 =====
 
 Description:
