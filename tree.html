@@ -28,9 +28,9 @@
 <script>
 
 var margin = {top: 20, right: 120, bottom: 20, left: 120},
-    width = 960 - margin.right - margin.left,
+    width = 1140 - margin.right - margin.left,
     height = 800 - margin.top - margin.bottom;
-    
+
 var i = 0,
     duration = 750,
     root;
@@ -47,7 +47,7 @@ var svg = d3.select("body").append("svg")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-  d3.json("https://gist.githubusercontent.com/mbostock/1093025/raw/a05a94858375bd0ae023f6950a2b13fac5127637/flare.json", function(error, flare) {
+  d3.json("https://gist.githubusercontent.com/Robinss2014/6a3e73a5ca5eab0ed958/raw/79335d20a382911b909f46e505dd601fb26dc64e/flare.json", function(error, flare) {
   root = flare;
   root.x0 = height / 2;
   root.y0 = 0;
