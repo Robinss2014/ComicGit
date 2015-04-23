@@ -70,12 +70,22 @@
       {"name": "Converters", "size": 721},
       {"name": "DelimitedTextConverter", "size": 4294},
       {"name": "GraphMLConverter", "size": 9800},
+<<<<<<< HEAD
       {"name": "IDataConverter",
        "children": [
         {"name": "IDataConverter1", "size": 1314},
         {"name": "IDataConverter2", "size": 1315},
         {"name": "IDataConverter3", "size": 1316}
        ]
+=======
+      {"name": "IDataConverter", 
+       "chidren": [
+        {"name": "IDataConverter1", "size": 1314},
+        {"name": "IDataConverter2", "size": 1314},
+        {"name": "IDataConverter3", "size": 1314},
+        ]
+       
+>>>>>>> 555ceeec0ee7949151c218c5da7f7d99adc8f90f
       },
       {"name": "JSONConverter", "size": 2220}
      ]
