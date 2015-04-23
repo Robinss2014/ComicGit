@@ -3,7 +3,7 @@ ComicGit
 
 Description:
 
-An web application to create multiple storylines for each comic
+ComitGit is a new way to create comic. User can create a new panel by drawing, resizing, tweaking the colors, replacing the background... The main feature of this project is the story-flow, a tree of panels, where each path is a storyline (comic). The story-flow brings the opportunity to create multiple comics with the same beginning.
 
 ----------------------------------------------------------
 
