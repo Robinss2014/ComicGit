@@ -70,7 +70,14 @@
       {"name": "Converters", "size": 721},
       {"name": "DelimitedTextConverter", "size": 4294},
       {"name": "GraphMLConverter", "size": 9800},
-      {"name": "IDataConverter", "size": 1314},
+      {"name": "IDataConverter", 
+       "chidren": [
+        {"name": "IDataConverter1", "size": 1314},
+        {"name": "IDataConverter2", "size": 1314},
+        {"name": "IDataConverter3", "size": 1314},
+        ]
+       
+      },
       {"name": "JSONConverter", "size": 2220}
      ]
     },
