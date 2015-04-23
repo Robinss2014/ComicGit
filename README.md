@@ -16,7 +16,7 @@ Screenshots:
   ![Story-flow View](https://raw.githubusercontent.com/Robinss2014/ComicGit/master/assets/imgs/story-flowView.png)
   
   Edit Panel View
-  ![Edit Panel View](https://raw.githubusercontent.com/Robinss2014/ComicGit/master/assets/imgs/story-flowView.png)
+  ![Edit Panel View](https://raw.githubusercontent.com/Robinss2014/ComicGit/master/assets/imgs/EditPanelView.png)
 
 ----------------------------------------------------------
 
