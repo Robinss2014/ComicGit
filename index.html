@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>ComicGit-Test</title>
+    <title>ComicGit</title>
 
     <!-- styles -->
     <link rel="stylesheet" type="text/css" href="css/app.css" />
@@ -17,10 +17,6 @@
     <script type="text/javascript" src="js/lib/jquery.min.js"></script>
     <script type="text/javascript" src="js/lib/jquery.lettering.js"></script>
     <script type="text/javascript" src="js/lib/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/lib/mustache.js"></script>
-    <script type="text/javascript" src="js/lib/underscore.js"></script>
-    <script type="text/javascript" src="js/lib/backbone.js"></script>
-    <script type="text/javascript" src="js/lib/requirejs/require.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -29,111 +25,115 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
+
   <body>
-    <div class="container">
-        <div class="starter-template">
-            <h1>ComicGit</h1>
-            <p class="lead">Start your drawings here.</p>
-        </div>
-    </div><!-- /.container -->
+    <!-- wrap -->
+    <div class="wrap">
+        <!-- header -->
+        <header class="header">
+            <div class="container text-center bottomShadow">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h1>ComicGit</h1>
+                        <p class="lead">"A place to create your own story"</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4 col-xs-offset-4">
+                        <a class="btn btn-default btn-lg btn-block" href="editpanel.html" role="button">Start a new story</a>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </header><!-- /.header -->
 
-    <!-- main content -->
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-md-offset-1">
-                <canvas id="canvas" width="500px" height="500px" style="border:1px solid #aaa"></canvas>
+
+        <!-- main content -->
+        <!-- thumbnail gallery -->
+        <div class="container main">
+            <div class="row">
+                <br>
+                <!-- content to be filled -->
+                <div id="main"></div>
+                <!-- hard coded content -->
+                <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                    <a class="thumbnail" href="storyflow.html">
+                        <img class="img-responsive" src="http://placehold.it/400x300" alt="">
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                    <a class="thumbnail" href="storyflow.html">
+                        <img class="img-responsive" src="http://placehold.it/400x300" alt="">
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                    <a class="thumbnail" href="storyflow.html">
+                        <img class="img-responsive" src="http://placehold.it/400x300" alt="">
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                    <a class="thumbnail" href="storyflow.html">
+                        <img class="img-responsive" src="http://placehold.it/400x300" alt="">
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                    <a class="thumbnail" href="storyflow.html">
+                        <img class="img-responsive" src="http://placehold.it/400x300" alt="">
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                    <a class="thumbnail" href="storyflow.html">
+                        <img class="img-responsive" src="http://placehold.it/400x300" alt="">
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                    <a class="thumbnail" href="storyflow.html">
+                        <img class="img-responsive" src="http://placehold.it/400x300" alt="">
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                    <a class="thumbnail" href="storyflow.html">
+                        <img class="img-responsive" src="http://placehold.it/400x300" alt="">
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                    <a class="thumbnail" href="storyflow.html">
+                        <img class="img-responsive" src="http://placehold.it/400x300" alt="">
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                    <a class="thumbnail" href="storyflow.html">
+                        <img class="img-responsive" src="http://placehold.it/400x300" alt="">
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                    <a class="thumbnail" href="storyflow.html">
+                        <img class="img-responsive" src="http://placehold.it/400x300" alt="">
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                    <a class="thumbnail" href="storyflow.html">
+                        <img class="img-responsive" src="http://placehold.it/400x300" alt="">
+                    </a>
+                </div><!-- End of hard coded content -->
             </div>
-            <div class="col-md-4" style="background-color: yellow">
-                <h4 class="text-center"> Setting Panel</h4>
-                <form>
-                  <div class="form-group">
-                    <label for="exampleInputFile">Upload an image</label>
-                    <input type="file" name="fileToUpload" id="fileToUpload">
-                    <p class="help-block">Supported image format includes: .jpg/.png/.svg</p>
-                    <button type="submit" class="btn btn-default" id="upload">Upload</button>
-                 </div>
-                  <div class="form-group">
-                    <label for="drawing-line-width">Line width:</label>
-                    <span class="info">10</span><input type="range" value="10" min="1" max="50" id="drawing-line-width">
-                  </div>
-                  <div class="form-group">
-                    <label for="clear-canvas">Clear the canvas</label>
-                    <button class="btn btn-default" id="clear-canvas">Clear</button>
-                  </div>
-                  <div class="form-group">
-                    <label for="save-to-local">Save the image to local disk</label>
-                    <button class="btn btn-default" id="save-to-local">Save</button>
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputFile">Display the image in another window</label>
-                    <button class="btn btn-default" id="save-to-server">Show</button>
-                  </div>
-                </form>
+        </div><!-- /.main -->
+
+    </div><!-- /.wrap -->
+
+    <!-- footer -->
+    <footer class="footer">
+        <div class="container topShadow">
+            <div class="row text-center">
+                <div class="col-xs-12">
+                    <br>
+                    ComicGit: a CSC690 final project by <a href="http://robinss.com" target="_blank">Sisi Wei</a> and Sylvain Ribstein<br>
+                    Documentation on <a href="https://docs.google.com/document/d/1Fq9K9efgS_MVmtmGSNIfi8MJMKnA9rFwhu78Fg5DSU0/edit?usp=sharing" target="_blank">Google Doc</a><br>
+                    Code on <a href="https://github.com/Robinss2014/ComicGit" target="_blank">GitHub</a><br>
+                </div>
             </div>
         </div>
-    </div><!-- main content -->
+    </footer><!-- /.footer -->
+
   </body>
-
-  <script>
-    // Place script tags at the bottom of the page.
-    // That way progressive page rendering and 
-    // downloads are not blocked.
- 
-    // Run only when HTML is loaded and 
-    // DOM properly initialized (courtesy jquery)
-    $(function () {
-        
-        var $ = function(id){return document.getElementById(id)};
-
-        var canvas = new fabric.Canvas('canvas', {
-            isDrawingMode: true
-        });
-
-        window.canvas = canvas;
-
-        // initial brush width
-        canvas.freeDrawingBrush.width =10;
-        fabric.Object.prototype.transparentCorners = false;
-
-        var upload = $('upload'),
-            drawingLineWidth = $('drawing-line-width'),
-            clearCanvas = $('clear-canvas'),
-            saveToLocal = $('save-to-local'),
-            saveToServer = $('save-to-server');
-
-        drawingLineWidth.onchange = function() {
-            canvas.freeDrawingBrush.width = parseInt(this.value, 10) || 1;
-            this.previousSibling.innerHTML = this.value;
-        };
-
-        upload.onclick = function(){
-            //canvas.style.backgroundImage = 'url('+ url + ')';
-            console.log('not ready');
-        };
-
-        clearCanvas.onclick = function() { 
-            canvas.clear(); 
-        };
-        saveToLocal.onclick = function() {
-            downloadFabric(canvas, 'test');
-        };
-        // saveToServer.onclick = function(){
-        // }
-        saveToServer.onclick = function() {
-            // downloadFabric(canvas, 'test');
-            // document.html();
-           window.open(canvas.toDataURL());
-        };
-                
-    });
-
-    function download(url,name){
-    // make the link. set the href and download. emulate dom click
-      $('<a>').attr({href:url,download:name})[0].click();
-    }
-    function downloadFabric(canvas,name){
-    //  convert the canvas to a data url and download it.
-      download(canvas.toDataURL(),name+'.png');
-    }
-  </script>
 </html>
