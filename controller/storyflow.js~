@@ -1,0 +1,73 @@
+var fs=require('fs');
+var path=require('path');
+this.create = function(response,argv){
+    console.log("storyflow/create"+argv);
+    response.writeHead(200,{"Content-Type":"text/html"});
+    var path ="view/storyflow.html";
+    fs.stat(path, function(err, stat){
+	if( err ) {
+	    response.writeHead(404, {'Content-Type': 'text/html'});
+	    response.end(""+err);
+	} else {
+	    response.writeHead(200, {
+		'Content-Type': 'text/html'});
+	    var stream = fs.createReadStream(path);
+	    //	    console.log('pipe stream '+path);
+	    stream.pipe(response);
+	    //console.log("end stream");
+	}
+    });
+}
+
+
+
+var createTree=function(panelFrom,cb){
+    fs.readdir(panelFrom,function(err,files){
+	if(err){
+	    cb(err,null);
+	}else{
+	    var current={"name":path.basename(panelFrom),children:[]};
+	    var direc=files.map(function(file){
+		return path.join(panelFrom,file);
+	    }).filter(function (file){
+		return fs.statSync(file).isDirectory();
+	    });
+	    if(direc.length===0){
+		//delete current.children;
+		cb(null,current);
+	    }
+	    else{
+		var i=0;
+		direc.forEach(function(file,index,array){
+		    createTree(file,function(childs){
+			//console.log("name : :"+current.name+"\n| index : "+index+"\n| i : "+i+"\n| f : "+file+"\n| childs : "+JSON.stringify(childs));
+			current.children.push(childs);
+			if(i === array.length-1){
+			    cb(null,current);
+			}
+			i=i+1;
+		    });
+		});
+	    }
+	}
+    });
+}
+
+this.createjsontree=function(response,argv){
+    console.log("storyflow/createjsontree : "+argv[0]);
+    var storyflow=__dirname+"/../storyflow/"+argv[0];
+    createTree(storyflow,function(err,tree){
+	if(err){
+	    console.log("storyflow/createjsontree : err : "+err);
+	    response.writeHead(400, {'Content-Type': 'text/plain'});
+	    response.end(treeJSON);
+	}else{
+	    var treeJSON=JSON.stringify(tree);
+	    console.log("storyflow/createjsontree : treeJSON : "+treeJSON);
+	    response.writeHead(200, {'Content-Type': 'application/json'});
+	    response.end(treeJSON);
+	}
+    });
+}
+
+

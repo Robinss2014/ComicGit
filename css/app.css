@@ -1,7 +1,8 @@
-html {
-
-}
-
+/**
+ * 
+ * general styles for index
+ * 
+ */
 body {
   height: 100%;
   background-color: #f5f5f5;
@@ -20,10 +21,9 @@ body {
   padding: 0 0 80px;
 }
 
-.main{
-    min-height: 600px;
+.main {
+    min-height: 700px;
 }
-
 
 .footer {
   width: 100%;
@@ -41,4 +41,110 @@ body {
 	-webkit-box-shadow: inset 0px 11px 8px -10px #CCC;
 	  -moz-box-shadow: inset 0px 11px 8px -10px #CCC;
 	       box-shadow: inset 0px 11px 8px -10px #CCC;
+}
+
+/**
+ * 
+ * styles for storyflowView
+ * 
+ */
+.node {
+  cursor: pointer;
+}
+
+.node circle {
+  fill: #fff;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+.node circle:hover {
+  stroke:red;
+}
+
+.node text {
+  font: 10px sans-serif;
+}
+
+.link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 1.5px;
+}
+
+.templink {
+  fill: none;
+  stroke: red;
+  stroke-width: 3px;
+}
+
+.ghostCircle.show{
+    display:block;
+}
+
+.ghostCircle, .activeDrag .ghostCircle{
+     display: none;
+}
+
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+}
+
+
+/**
+ * 
+ * styles for editpanelView
+ * 
+ */
+#canvas-container {
+    position: relative;
+    width: 710px;
+    height: 560px;
+    box-shadow: 0 0 5px 1px black;
+    margin: 10px auto;
+    border: 5px solid transparent;
+}
+
+/*#canvas-container.over {
+    border: 5px dashed cyan;
+}*/
+
+#images img.img_dragging {
+    opacity: 0.4;
+}
+
+/* Prevent the text contents of draggable elements from being selectable. */
+[draggable] {
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    /* Required to make elements draggable in old WebKit */
+    -khtml-user-drag: element;
+    -webkit-user-drag: element;
+    cursor: move;
 }

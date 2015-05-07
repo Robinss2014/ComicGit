@@ -1,0 +1,109 @@
+var findPathTree=function(panelFrom,panelParent,panel,cb){
+    //console.log("panelFrom "+panelFrom+"\npanelParent "+panelParent+"\npanel "+panel);
+    fs.mkdir(panelFrom,'0755',function(err){
+	if(err && err.code!='EEXIST')
+	    cb(err,null);
+	else{
+	    if(path.basename(panelFrom)===panelParent){
+		if(panelParent===panel){
+		    cb(null,panelFrom);
+		}else{
+		    fs.mkdir(path.join(panelFrom,panel),function(err){
+			if(err)
+			    cb(err,null);
+			else
+			    cb(path.join(panelFrom,panel));
+		    });
+		}
+	    }
+	    fs.readdir(panelFrom,function(err,files){
+		if(err)
+		    cb(err,null);
+		else{
+		    console.log("files "+files.join(' | '));
+		    var direc=files.map(function(file){
+			return path.join(panelFrom,file);
+		    }).filter(function (file){
+			return fs.statSync(file).isDirectory();
+		    }).forEach(function (file){
+			//console.log("basename : "+path.basename(file));
+			if(path.basename(file)===panelParent){
+			    panel=path.join(file,panel);
+			    fs.mkdir(panel,'0755',function(err){
+				if(err ){
+				    cb(err,null);
+				    //			    console.log("error mkdir second "+err);
+				}
+				cb(null,panel);
+			    });
+			}else{
+			    findPathTree(file,panelParent,panel,cb);
+			}
+		    });
+		}
+	    });
+	}
+    });
+}
+
+this.showpanel=function(response,argv){
+    var storyflow=__dirname+"/../storyflow/"+argv[0],
+	panelParent=argv[1];
+    console.log("storyflow "+storyflow+"\npanelParent : "+panelParent);
+    findPathTree(storyflow,panelParent,"",function(err,panelPath){
+	if(err){
+	    response.writeHead(404,{"Content-Type":"text/plain"});
+	    response.end(err);
+	}
+	else{
+	    var canvas = fabric.createCanvasForNode(1000,1000);
+	    panelPath=path.join(panelPath,panelParent);
+	    console.log("panelPath "+panelPath);
+	    fs.readFile(panelPath,function(err,data){
+		if(err){
+		    response.writeHead(404,{"Content-Type":"text/plain"});
+		    response.end(err);
+		}
+		else{
+		    var jsonpanel=JSON.parse(data);
+		    response.writeHead(200, { 'Content-Type': 'image/png' });
+		    //console.log("file json : "+data);
+		    canvas.loadFromJSON(jsonpanel, function() {
+			canvas.renderAll();
+			var stream = canvas.createPNGStream();
+			stream.on('data', function(chunk) {
+			    response.write(chunk);
+			});
+			stream.on('end', function() {
+			    response.end();
+			});
+		    });
+		}
+	    });
+	}
+    });
+}
+
+this.savepanel=function(response,argv,postData){
+    var storyflow=__dirname+"/../storyflow/"+argv[0],
+	panelParent=argv[1],
+	panel=argv[2];
+    console.log("editpanel/savepanel "+path.basename(storyflow)+" "+panelParent+" "+panel);
+    findPathTree(storyflow,panelParent,panel,function(panelPath){
+	panelPath=path.join(panelPath,panel);
+	console.log("panelPath "+panelPath);
+	fs.open(panelPath,'a','0755',function(err,fd){
+	    if(err)
+		console.log("error open "+err);
+	    else{
+		fs.write(fd,postData,function(err){
+		    if(err)
+			console.log("error write "+err);
+		    response.writeHead({"Content-Type":"application/json"});
+		    response.end("{'upload':'saved'}");
+		});
+	    }
+	});
+    });
+}
+
