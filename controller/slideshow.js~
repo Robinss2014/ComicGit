@@ -1,7 +1,0 @@
-var name='slideshow';
-this.create =function(response){
-    console.log("about to create slideshow");
-    response.writeHead(200,{"Content-Type":"text/plain"});
-    response.write("hello slideshow");
-    response.end();
-}
