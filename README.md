@@ -12,9 +12,11 @@ Screenshots:
 ----------------------------------------------------------
 
   Main View:
+  
     Main view contains a story-flow gallery. 
     User shall click on the “Start a new story”  to create a story-flow for the new comic;
     User shall click on any existing panel in the story-flow gallery to continue the comic;
+    
   ![Main View](https://raw.githubusercontent.com/Robinss2014/ComicGit/master/assets/imgs/index.png)
   
   Storyflow View
