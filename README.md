@@ -9,8 +9,6 @@ ComitGit is a new way to create comic. User can create a new panel by drawing, r
 
 Screenshots:
 
-----------------------------------------------------------
-
   Main View:
   
     Main view contains a story-flow gallery. 
