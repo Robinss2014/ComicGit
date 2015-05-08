@@ -2,6 +2,7 @@ var fs=require('fs');
 var path = require('path');
 var fabric=require('fabric').fabric;
 var panelFct=require('./panel');
+
 this.create = function(response,argv){
     //    console.log("about to create the page editpanel");
     var view ="view/editpanel.html";
@@ -19,7 +20,6 @@ this.create = function(response,argv){
     });
 }
 
-
 var savepng=function(panelPath,data,cb){
     console.log("editpanel/savepng");
     var canvas = fabric.createCanvasForNode(700, 550);
@@ -34,20 +34,27 @@ var savepng=function(panelPath,data,cb){
 
 var savejson=function(panelPath,data,cb){
     console.log("editpanel/savejson");
-    fs.open(panelPath,'a','0755',function(err,fd){
+ //    fs.open(panelPath,'a','0755',function(err,fd){
+	// if(err){
+	//     console.log("editpanel/savejson : error open "+err);
+	//     cb(false);
+	// }else{
+	// 	fs.write(fd,data,function(err){
+	// 	if(err){
+	// 	    console.log("editpanel/savejson error write "+err);
+	// 	    cb(false);
+	// 	}
+	// 	cb(true);
+	//     });
+	// }
+ //    });
+
+	fs.writeFile(panelPath,data,function(err){
 	if(err){
-	    console.log("editpanel/savejson : error open "+err);
+	    console.log("editpanel/savejson error write "+err);
 	    cb(false);
-	}else{
-		// fs.write(fd,data,function(err){
-		fs.writeFile(panelPath,data,function(err){
-		if(err){
-		    console.log("editpanel/savejson error write "+err);
-		    cb(false);
-		}
-		cb(true);
-	    });
 	}
+	cb(true);
     });
 }
 

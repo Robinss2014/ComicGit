@@ -32,6 +32,8 @@ $(document).ready(function(){
         canvas.clear(); 
     };
 
+    window.myCanvas = canvas;
+    
     // some default images on the canvas
     canvas.add(new fabric.Rect({
         left: 100,
