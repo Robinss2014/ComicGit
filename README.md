@@ -10,18 +10,16 @@ ComitGit is a new way to create comic. User can create a new panel by drawing, r
 Screenshots:
 
   Main View
-  ![Main View](https://raw.githubusercontent.com/Robinss2014/ComicGit/master/assets/imgs/mainView.png)
+  ![Main View](https://raw.githubusercontent.com/Robinss2014/ComicGit/master/assets/imgs/index.png)
 
-  Story-flow View
-  ![Story-flow View](https://raw.githubusercontent.com/Robinss2014/ComicGit/master/assets/imgs/story-flowView.png)
+  Storyflow View
+  ![storyflow View](https://raw.githubusercontent.com/Robinss2014/ComicGit/master/assets/imgs/storyflowView.png)
   
-  Edit Panel View
-  ![Edit Panel View](https://raw.githubusercontent.com/Robinss2014/ComicGit/master/assets/imgs/EditPanelView.png)
+  Editpanel View
+  ![editpanel View](https://raw.githubusercontent.com/Robinss2014/ComicGit/master/assets/imgs/editpanelView.png)
+  
+  Slideshow View
+  ![Slide Show View](https://raw.githubusercontent.com/Robinss2014/ComicGit/master/assets/imgs/slideshowlView.png)
 
 ----------------------------------------------------------
 
-Demo
-
-http://robinss.com/ComicGit/
-
-----------------------------------------------------------
