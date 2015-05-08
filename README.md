@@ -19,12 +19,36 @@ Screenshots:
     
   ![Main View](https://raw.githubusercontent.com/Robinss2014/ComicGit/master/assets/imgs/index.png)
   
+  
+  Storyflow View:
+  
+    A storyflow contains all the storylines beginning with the same panel.
+    The user shall click on any panel in the story-flow to view it.
+    The user shall hover over any panel to show some hidden tips:
+      1.User shall click on “add” to add a new panel into the story-flow
+      2.User shall click on “show” to view the current panel he selected
+    
   Storyflow View
   ![storyflow View](https://raw.githubusercontent.com/Robinss2014/ComicGit/master/assets/imgs/storyflowView.png)
   
+  
+  Editpanel View:
+  
+    The user shall create a new panel from here.
+    The panel will be a composition of multiple drawing objects.
+    He can create a new object using the “create new object” option in the Editing toolbox. 
+    
   Editpanel View
   ![editpanel View](https://raw.githubusercontent.com/Robinss2014/ComicGit/master/assets/imgs/editpanelView.png)
   
+  
+  Slideshow View:
+  
+    The user can view the storyline in this view. 
+    The default speed for the slide-show is zero, user can only switch to another slide manually by clicking on the left and right arrows.
+    Once the user set up a speed for the slide-show, it will automatically play the slides at this speed.
+    If the user click on the “Go back to story-flow”, it will link to the story-flow view.
+
   Slideshow View
   ![Slide Show View](https://raw.githubusercontent.com/Robinss2014/ComicGit/master/assets/imgs/slideshowView.png)
 
