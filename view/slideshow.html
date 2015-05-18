@@ -13,7 +13,7 @@
 		<script type="text/javascript" src="/js/lib/fabric.js"></script>
 		<script type="text/javascript" src="/js/lib/jquery.min.js"></script>
 		<!-- js -->
-		<script type="text/javascript" src="/js/slideshowView.js"></script>
+		<script src="/js/slideshowView.js"></script>
 	</head>
 	<body>
 		<!-- wrap -->
@@ -23,7 +23,7 @@
 				<div class="container text-center bottomShadow">
 					<div class="row">
 						<div class="col-xs-12">
-							<h1>Slide Show</h1>
+							<h1>Edit Panel</h1>
 						</div>
 					</div>
 					<div class="row">
@@ -33,7 +33,7 @@
 							<br>
 						</div>
 						<div class="col-xs-5 col-xs-offset-1">
-							<a class="btn btn-default btn-lg btn-block" id="backstoryflow" role="button">Go to storyflow</a>
+							<a class="btn btn-default btn-lg btn-block" id="backstoryflow" role="button">back to storyflow</a>
 							<br>
 						</div>
 					</div>
@@ -42,7 +42,6 @@
 			
 			<!-- main content -->
 			<div class="container main">
-				<br>
 				<div id="main">
 					<br/>
 					<br/>
@@ -61,10 +60,25 @@
 							</div>
 						</div>
 					</div>
+					<br/>
+					<br/>
+					<div class="row">
+						<div class="col-md-3">
+							<label for="interval-time">timer (s) :</label>
+							<span class="info" id="interval-time-value"> 1 </span>
+						</div>
+						<div class="col-md-3">
+							<input type="range" value="1" min="1" maxcdn="40" id="interval-time">
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<button class="btn btn-default" id="timer">stop timer</button>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-		
 		<!-- footer -->
 		<footer class="footer">
 			<div class="container topShadow">
