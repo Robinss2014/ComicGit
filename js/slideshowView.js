@@ -42,7 +42,7 @@ $(document).ready(function(){
         chargeImg(index,panels);
         
         var intervalTime=$('#interval-time')[0];
-        var time=1000;
+        var time=10000;
 
         intervalTime.onchange=function(){
             time=this.value*1000;

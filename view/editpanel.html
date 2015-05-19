@@ -120,15 +120,27 @@
 								<button class="btn btn-default" id="remove-object">Remove</button>
 							</div>
 							<div class="form-group">
+							  	<label for="back-layer">send to back layer </label>
+								<button class="btn btn-default" id="back-layer">back</button>
+								<label for="front-layer">send to front layer </label>
+								<button class="btn btn-default" id="front-layer">front</button>
+							</div>
+							<div class="form-group">
 								<label for="save-to-server">save to server:</label>
 								<div id="storyflowdiv"></div>
 								<div id="parentpaneldiv"></div>
 								<div id="paneldiv"></div>
 								<button class="btn btn-default" id="save-to-server">save</button>
 							</div>
+							<div class="form-group">
+							  <form id="form-image-input" runat="server">
+							    <input type="file" id="image-input"/>
+							    <!--  <img id="blah" src="#" alt="your image" />-->
+							  </form>
+							</div>
 							<div class="form-group" id="save-local-button">
-								<label for="save-to-local">Save to local disk:</label>
-								<button class="btn btn-default" id="save-to-local">Save</button>
+							  <label for="save-to-local">Save to local disk:</label>
+							  <button class="btn btn-default" id="save-to-local">Save</button>
 							</div>
 						</div>
 					</div>

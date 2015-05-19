@@ -25,6 +25,11 @@ body {
     min-height: 700px;
 }
 
+.treeContainer{
+    min-height: 500px;
+}
+
+
 .footer {
   width: 100%;
   /* Set the fixed height of the footer here */
@@ -69,6 +74,28 @@ body {
   fill: none;
   stroke: #ccc;
   stroke-width: 1.5px;
+}
+
+.found {
+  fill: #ff4136;
+  stroke: #ff4136;
+}
+
+.search {
+  float: left;
+  font: 10px sans-serif;
+  width: 30%;
+}
+
+ul.select2-results {
+ max-height: 100px;
+}
+
+.select2-container,
+.select2-drop,
+.select2-search,
+.select2-search input {
+  font: 10px sans-serif;
 }
 
 .templink {

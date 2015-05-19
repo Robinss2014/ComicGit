@@ -81,7 +81,8 @@ $(document).ready(function(){
             left: 40,
             top: 20,
             fontSize: 80,
-            textAlign: "left"
+            textAlign: "left",
+	    fill:canvas.freeDrawingBrush.color
         });
 
         canvas.add(text_obj);
@@ -108,7 +109,7 @@ $(document).ready(function(){
 
     function handleDragEnter(e) {
         // this / e.target is the current hover target.
-            this.classList.add('over');
+        this.classList.add('over');
     }
 
     function handleDragLeave(e) {
@@ -118,9 +119,9 @@ $(document).ready(function(){
     function handleDrop(e) {
         // this / e.target is current target element.
 
-            if (e.stopPropagation) {
-                e.stopPropagation(); // stops the browser from redirecting.
-            }
+        if (e.stopPropagation) {
+            e.stopPropagation(); // stops the browser from redirecting.
+        }
         
         var img = document.querySelector('#images img.img_dragging');
 
@@ -131,7 +132,7 @@ $(document).ready(function(){
             height: img.height,
             // Set the center of the new object based on the event coordinates relative
             // to the canvas container.
-                left: e.layerX,
+            left: e.layerX,
             top: e.layerY
         });
         canvas.add(newImage);
@@ -141,15 +142,15 @@ $(document).ready(function(){
 
     function handleDragEnd(e) {
         // this/e.target is the source node.
-                    [].forEach.call(images, function (img) {
-                        img.classList.remove('img_dragging');
-                    });
+        [].forEach.call(images, function (img) {
+            img.classList.remove('img_dragging');
+        });
     }
 
     if (Modernizr.draganddrop) {
         // Browser supports HTML5 DnD.
 
-            // Bind the event listeners for the image elements
+        // Bind the event listeners for the image elements
         var images = document.querySelectorAll('#images img');
         [].forEach.call(images, function (img) {
             img.addEventListener('dragstart', handleDragStart, false);
@@ -162,7 +163,7 @@ $(document).ready(function(){
         canvasContainer.addEventListener('drop', handleDrop, false);
     } else {
         // Replace with a fallback to a library solution.
-            alert("This browser doesn't support the HTML5 Drag and Drop API.");
+        alert("This browser doesn't support the HTML5 Drag and Drop API.");
     }
 
     // change the line width
@@ -176,6 +177,7 @@ $(document).ready(function(){
     var drawingLineColor = $('#drawing-line-color')[0];
     drawingLineColor.onchange = function() {
         canvas.freeDrawingBrush.color = this.value;
+	
     };
 
     // remove the object
@@ -208,7 +210,7 @@ $(document).ready(function(){
     var saveLocal=$('#save-to-local')[0];
     saveLocal.onclick=function(){
         // make the link. set the href and download. emulate dom click
-        $('<a>').attr({href:canvas.toDataURL(),download:"test.png"})[0].click();
+        $('<a>').attr({href:canvas.toDataURL(),download: sf + ".png"})[0].click();
     };
 
     // save the canvas to server
@@ -225,12 +227,59 @@ $(document).ready(function(){
         }
         var urlPost="/editpanel/savepanel/"+sf+"/"+last+"/"+panel;
         $.post(urlPost,
-            JSON.stringify(canvas),
-            function(data,status){
-                //console.log(data+' '+status);
-            }
-        );
-
-        
+               JSON.stringify(canvas),
+               function(data,status){
+                   //console.log(data+' '+status);
+               }
+              );
     };
+    var ImageInput=$('#image-input')[0];
+    ImageInput.onchange=function(){
+	console.log("change of background");
+	var reader=new FileReader();
+	reader.onload=function(e){
+	    console.log("load img background");
+	    var dataURL=reader.result;
+	    var imgObj=new Image();
+	    imgObj.src=reader.result;
+	    imgObj.onload=function(){
+		console.log("load img background in canvas");
+		var newImage = new fabric.Image(imgObj, {
+		    width: imgObj.height,
+		    height: imgObj.width,
+		    // Set the center of the new object based on the event coordinates relative
+		    // to the canvas container.
+                    left: 0,
+		    top: 0
+		});
+		canvas.centerObject(newImage);
+		canvas.add(newImage);
+		canvas.renderAll();
+	    };
+	}
+	console.log(this.files);
+	reader.readAsDataURL(this.files[0]);
+    }
+
+
+
+    var backLayer=$('#back-layer')[0];
+    var frontLayer=$('#front-layer')[0];
+    backLayer.onclick=function(){
+        if(canvas.getActiveGroup()){
+            canvas.getActiveGroup().forEachObject(function(o){ canvas.sendBackwards(o) });
+            canvas.discardActiveGroup().renderAll();
+        } else {
+            canvas.sendBackwards(canvas.getActiveObject());
+        }	
+    }
+    frontLayer.onclick=function(){
+        if(canvas.getActiveGroup()){
+            canvas.getActiveGroup().forEachObject(function(o){ canvas.bringForward(o) });
+            canvas.discardActiveGroup().renderAll();
+        } else {
+            canvas.bringForward(canvas.getActiveObject());
+        }	
+    }
+    
 });
