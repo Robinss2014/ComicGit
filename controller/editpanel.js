@@ -21,9 +21,10 @@ this.create = function(response,argv){
 }
 
 var savepng=function(panelPath,data,cb){
+    var dataArray=JSON.parse(data);
     console.log("editpanel/savepng");
     var canvas = fabric.createCanvasForNode(700, 550);
-    canvas.loadFromJSON(data, function() {
+    canvas.loadFromJSON(dataArray[0], function() {
 	canvas.renderAll();
 	var stream = canvas.createPNGStream();
 	var fileStream=fs.createWriteStream(panelPath+".png");
@@ -33,28 +34,23 @@ var savepng=function(panelPath,data,cb){
 }
 
 var savejson=function(panelPath,data,cb){
+    var dataArray=JSON.parse(data);
     console.log("editpanel/savejson");
- //    fs.open(panelPath,'a','0755',function(err,fd){
-	// if(err){
-	//     console.log("editpanel/savejson : error open "+err);
-	//     cb(false);
-	// }else{
-	// 	fs.write(fd,data,function(err){
-	// 	if(err){
-	// 	    console.log("editpanel/savejson error write "+err);
-	// 	    cb(false);
-	// 	}
-	// 	cb(true);
-	//     });
-	// }
- //    });
-
-	fs.writeFile(panelPath,data,function(err){
+    console.log("canvas : \n"+dataArray[0]);
+    console.log("metadata : \n"+dataArray[1]);
+    fs.writeFile(panelPath,JSON.stringify(dataArray[0]),function(err){
 	if(err){
 	    console.log("editpanel/savejson error write "+err);
 	    cb(false);
 	}
 	cb(true);
+	fs.writeFile(panelPath+".txt",dataArray[1],function(err){
+	    if(err){
+		console.log("editpanel/savejson error write "+err);
+		cb(false);
+	    }
+	    cb(true);
+	});
     });
 }
 
@@ -68,6 +64,7 @@ this.savepanel=function(response,argv,postData){
 		+path.basename(storyflow)+" "
 		+panelParent+" "
 		+panel);
+    console.log("postData : \n"+postData);
     panelFct.findpathpanel(storyflow,panelParent,function(err,panelPath){
 	if(err){
 	    

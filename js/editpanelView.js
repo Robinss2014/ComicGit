@@ -17,7 +17,7 @@ $(document).ready(function(){
         $("#parentpaneldiv").append('<p id="parentpanel" for="save-to-server">previous panel : '+last+'</p>');
         $("#paneldiv").append('name panel <input id="panel" type="text" for="save-to-server">');
     }
-
+    
     $('#backstoryflow')[0].href="/storyflow/"+sf;
     // initialize the canvas and canvas-container
     var canvas = new fabric.Canvas('canvas', {
@@ -225,9 +225,14 @@ $(document).ready(function(){
         else{
             panel=$('#panel')[0].value;
         }
+	$('#backstoryflow')[0].href="/storyflow/"+sf;
         var urlPost="/editpanel/savepanel/"+sf+"/"+last+"/"+panel;
+	//var data=canvas;
+	
+	var data=[canvas,$('#meta-data').val()];
+	console.log(data);
         $.post(urlPost,
-               JSON.stringify(canvas),
+               JSON.stringify(data),
                function(data,status){
                    //console.log(data+' '+status);
                }

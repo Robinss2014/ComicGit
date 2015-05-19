@@ -200,17 +200,21 @@ function update(source) {
   var nodeEnter = node.enter().append("g")
       .attr("class", "node")
       .attr("transform", function(d) { return "translate(" + source.y0 + "," + source.x0 + ")"; })
-      .on("click", toggle);
+      .on("mouseout", function(d){
+         d3.select(".d3-tip")
+            .transition()
+              .delay(1000)
+              .duration(1000)
+              .style("opacity",0)
+              .style('pointer-events', 'none')
+      });
 
   nodeEnter.append("circle")
       .attr("r", 1e-6)
-      .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; })
+      .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; })      
+      .on("click", toggle)
       .on("mouseover", function(d){
-                console.log(d);
-                tip.show(d);})
-      .on("mouseout", function(d){
-                tip.hide(d);
-                //tip.show(d);
+         tip.show(d);
       });
 
   nodeEnter.append("text")
@@ -223,7 +227,7 @@ function update(source) {
   // Transition nodes to their new position.
   var nodeUpdate = node.transition()
       .duration(duration)
-      .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
+      .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")";});
 
   nodeUpdate.select("circle")
       .attr("r", 4.5)
@@ -234,7 +238,7 @@ function update(source) {
                 return "lightsteelblue";
             } else {
                 return "#fff";
-            }
+            };
         })
         .style("stroke", function(d) {
             if (d.class === "found") {

@@ -27,6 +27,18 @@ $(document).ready(function(){
     function chargeImg(index,panels){
 //      $("#main").append("<div>panel src : "+panels.slice(0,index+1).join('/')+"/"+panels[index]+"</div>");
         $("#slide")[0].src=panels.slice(0,index+1).join('/')+"/"+panels[index]+".png";
+	$("#metadata")[0].innerHTML="nothing yet";
+	$.ajax({
+	    type:'GET',
+	    url:panels.slice(0,index+1).join('/')+"/"+panels[index]+".txt",
+	    //	    data{get_param
+	    dataType:'text',
+	    success:function(data){
+		$("#metadata").empty();	
+		$("#metadata")[0].innerHTML=data;
+	    }
+	});
+	    
     }
     
     function display(panels){
