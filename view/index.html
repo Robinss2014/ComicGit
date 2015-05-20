@@ -6,24 +6,15 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 		<title>ComicGit</title>
-
 		<!-- styles -->
 		<link rel="stylesheet" type="text/css" href="/css/app.css" />
 		<link rel="stylesheet" type="text/css" href="/css/bootstrap/bootstrap.min.css" />
 		<link rel="stylesheet" type="text/css" href="/css/font-awesome.css" />
-		
 		<!-- libraries -->
 		<script type="text/javascript" src="/js/lib/fabric.js"></script>
 		<script type="text/javascript" src="/js/lib/jquery.min.js"></script>
-		<!--		<script type="text/javascript" src="js/lib/jquery.lettering.js"></script>
-		<script type="text/javascript" src="js/lib/bootstrap.min.js"></script>-->
-
-		<!--5 shim and Respond.js for IE8 support of5 elements and media queries -->
-		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-		<!--[if lt IE 9]>
-		<script src="https://oss.maxcdn.com5shiv/3.7.25shiv.min.js"></script>
-		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		<![endif]-->
+		<!-- js -->
+		<script src="/js/index.js"></script>
 	</head>
 
 	<body>
@@ -47,18 +38,14 @@
 				</div>
 			</header><!-- /.header -->
 
-
 			<!-- main content -->
 			<!-- thumbnail gallery -->
 			<div class="container main">
 				<div class="row">
 					<br>
-					<!-- content to be filled -->
 					<div id="main"></div>
-					<!-- hard coded content -->
 				</div>
 			</div><!-- /.main -->
-
 		</div><!-- /.wrap -->
 
 		<!-- footer -->
@@ -67,30 +54,14 @@
 				<div class="row text-center">
 					<div class="col-xs-12">
 						<br>
-						ComicGit: a CSC690 final project by <a href="http://robinss.com" target="_blank">Sisi Wei</a> and Sylvain Ribstein<br>
+						ComicGit: a CSC690 final project by <a href="http://robinss.com" target="_blank">Sisi Wei</a> and <a href="https://github.com/sribst" target="_blank">Sylvain Ribstein</a><br>
 						Documentation on <a href="https://docs.google.com/document/d/1Fq9K9efgS_MVmtmGSNIfi8MJMKnA9rFwhu78Fg5DSU0/edit?usp=sharing" target="_blank">Google Doc</a><br>
 						Code on <a href="https://github.com/Robinss2014/ComicGit" target="_blank">GitHub</a><br>
 					</div>
 				</div>
 			</div>
 		</footer><!-- /.footer -->
-
 	</body>
-	<script>
-	$(function(){
-
-		$.post("/index/allstoryflow",
-			function(storyflow){
-				storyflow.arr.forEach(function(sf){
-					$('#main').append('<div class="col-lg-3 col-md-4 col-xs-6 thumb">'+
-						'<a class="thumbnail" href="/storyflow/'+sf.name+'">'+'<img class="img-responsive" src="/storyflow/'+sf.name+'/'+sf.name+'.png" alt="">'+
-							sf.name+'</a></div>'
-					);
-			});
-		});
-	});
-	</script>
-	
 </html>
 
 
