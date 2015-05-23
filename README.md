@@ -1,4 +1,7 @@
-Final Project for CSC 690 at SFSU - ComicGit
+Final Project for CSC 690 at SFSU
+
+- ComicGit
+
 =====
 
 Description:
@@ -8,13 +11,13 @@ ComitGit is a new way to create comic. User can create a new panel by drawing, r
 ----------------------------------------------------------
 How to use:
 
-  # clone the git
-  $ cd your_repo_root/repo_name
-  $ git clone https://github.com/Robinss2014/ComicGit.git
-  $ cd ComicGit
-
-  # start the server
-  $ node index.js
+    # clone the git
+    $ cd your_repo_root/repo_name
+    $ git clone https://github.com/Robinss2014/ComicGit.git
+    $ cd ComicGit
+     
+    # start the server
+    $ node index.js
 
 ----------------------------------------------------------
 
