@@ -247,16 +247,32 @@ $(document).ready(function(){
 	    var dataURL=reader.result;
 	    var imgObj=new Image();
 	    imgObj.src=reader.result;
+
+        window.imgObj = imgObj;
+
 	    imgObj.onload=function(){
+
 		console.log("load img background in canvas");
+        var imgRatio = imgObj.width/imgObj.height;
+        var canvasRatio = canvas.width/canvas.height;
+
+        if(imgRatio > canvasRatio){
+            imgObj.width = canvas.width;
+            imgObj.height = Math.min(canvas.width/imgRatio, 550);
+        }else{
+            imgObj.width = Math.min(imgRatio * canvas.height, 700);
+            imgObj.height = canvas.height;
+        }
+
 		var newImage = new fabric.Image(imgObj, {
-		    width: imgObj.height,
-		    height: imgObj.width,
+		    width: imgObj.width,
+		    height: imgObj.height,
 		    // Set the center of the new object based on the event coordinates relative
 		    // to the canvas container.
-                    left: 0,
+            left: 0,
 		    top: 0
 		});
+
 		canvas.centerObject(newImage);
 		canvas.add(newImage);
 		canvas.renderAll();
