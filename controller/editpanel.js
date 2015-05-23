@@ -1,8 +1,19 @@
+/**
+ * @file editpanel.js
+ * @author Sisi Wei, 915565877
+ * @date 20 May 15
+ * @description A controller for editpanelView.
+ */
 var fs=require('fs');
 var path = require('path');
 var fabric=require('fabric').fabric;
 var panelFct=require('./panel');
 
+/**
+ * Create route for editpanel
+ * @param response an response to the editpanel
+ * @param argv the panel's name
+ */
 this.create = function(response,argv){
     //    console.log("about to create the page editpanel");
     var view ="view/editpanel.html";
@@ -20,6 +31,12 @@ this.create = function(response,argv){
     });
 }
 
+/**
+ * Save panel into image(.png)
+ * @param panelPath the path to find the panel
+ * @param data a json for the panel
+ * @param cb A minimal node.js utility for handling common
+ */
 var savepng=function(panelPath,data,cb){
     var dataArray=JSON.parse(data);
     console.log("editpanel/savepng");
@@ -33,6 +50,12 @@ var savepng=function(panelPath,data,cb){
     });
 }
 
+/**
+ * Save panel into JSON
+ * @param panelPath the path to find the panel
+ * @param data a json for the panel
+ * @param cb A minimal node.js utility for handling common
+ */
 var savejson=function(panelPath,data,cb){
     var dataArray=JSON.parse(data);
     console.log("editpanel/savejson");
@@ -54,8 +77,12 @@ var savejson=function(panelPath,data,cb){
     });
 }
 
-
-
+/**
+ * Save panel into storyflow
+ * @param response an response to the editpanel
+ * @param argv the panel's name
+ * @param postData the data need to send to server
+ */
 this.savepanel=function(response,argv,postData){
     var storyflow=__dirname+"/../storyflow/"+argv[0],
 	panelParent=argv[1],

@@ -1,3 +1,9 @@
+/**
+ * @file editpanelView.js
+ * @author Sisi Wei, 915565877
+ * @date 23 May 15
+ * @description A javascript for the editpanelView
+ */
 $(document).ready(function(){
     var u=$(location).attr('href').split('/');
     if(u[u.length-1]===""){
@@ -34,7 +40,7 @@ $(document).ready(function(){
 
     window.myCanvas = canvas;
     
-    // some default images on the canvas
+    // add a rectangle on the canvas
     canvas.add(new fabric.Rect({
         left: 100,
         top: 100,
@@ -46,6 +52,7 @@ $(document).ready(function(){
         padding: 10
     }));
 
+    // add a circle on the canvas
     canvas.add(new fabric.Circle({
         left: 200,
         top: 200,
@@ -75,6 +82,11 @@ $(document).ready(function(){
         create_text_obj(text);
     };
 
+
+    /**
+     * Create the text object by the text
+     * @param text the user's input
+     */
     function create_text_obj(text) {
         var text_obj = new fabric.Text(text, {
             fontFamily: 'Delicious_500',
@@ -87,8 +99,11 @@ $(document).ready(function(){
 
         canvas.add(text_obj);
     };
-
-    // drag and drop image into canvas
+    
+    /**
+     * Handle start dragging an image into canvas
+     * @param e window's event
+     */
     function handleDragStart(e) {
         [].forEach.call(images, function (img) {
             img.classList.remove('img_dragging');
@@ -96,26 +111,40 @@ $(document).ready(function(){
         this.classList.add('img_dragging');
     }
 
+    /**
+     * Handle drag over an image
+     * @param e window's event
+     */
     function handleDragOver(e) {
         if (e.preventDefault) {
-            e.preventDefault(); // Necessary. Allows us to drop.
+            e.preventDefault();
         }
 
-        e.dataTransfer.dropEffect = 'copy'; // See the section on the DataTransfer object.
-        // NOTE: comment above refers to the article (see top) -natchiketa
-
+        e.dataTransfer.dropEffect = 'copy'; 
         return false;
     }
 
+    /**
+     * Handle drag an image into canvas
+     * @param e window's event
+     */
     function handleDragEnter(e) {
         // this / e.target is the current hover target.
         this.classList.add('over');
     }
 
+    /**
+     * Handle leave an image into canvas
+     * @param e window's event
+     */
     function handleDragLeave(e) {
         this.classList.remove('over'); // this / e.target is previous target element.
     }
 
+    /**
+     * Handle drop an image into canvas
+     * @param e window's event
+     */
     function handleDrop(e) {
         // this / e.target is current target element.
 
@@ -140,6 +169,10 @@ $(document).ready(function(){
         return false;
     }
 
+    /**
+     * Handle end dragging an image into canvas
+     * @param e window's event
+     */
     function handleDragEnd(e) {
         // this/e.target is the source node.
         [].forEach.call(images, function (img) {
@@ -227,8 +260,8 @@ $(document).ready(function(){
         }
 	$('#backstoryflow')[0].href="/storyflow/"+sf;
         var urlPost="/editpanel/savepanel/"+sf+"/"+last+"/"+panel;
-	//var data=canvas;
 	
+
 	var data=[canvas,$('#meta-data').val()];
 	console.log(data);
         $.post(urlPost,
@@ -238,50 +271,53 @@ $(document).ready(function(){
                }
               );
     };
+
+    // upload an image into canvas
     var ImageInput=$('#image-input')[0];
     ImageInput.onchange=function(){
-	console.log("change of background");
-	var reader=new FileReader();
-	reader.onload=function(e){
-	    console.log("load img background");
-	    var dataURL=reader.result;
-	    var imgObj=new Image();
-	    imgObj.src=reader.result;
+    	console.log("change of background");
+    	var reader=new FileReader();
+    	reader.onload=function(e){
+    	    console.log("load img background");
+    	    var dataURL=reader.result;
+    	    var imgObj=new Image();
+    	    imgObj.src=reader.result;
 
-        window.imgObj = imgObj;
+            window.imgObj = imgObj;
 
-	    imgObj.onload=function(){
+    	    imgObj.onload=function(){
 
-		console.log("load img background in canvas");
-        var imgRatio = imgObj.width/imgObj.height;
-        var canvasRatio = canvas.width/canvas.height;
+    		console.log("load img background in canvas");
+            var imgRatio = imgObj.width/imgObj.height;
+            var canvasRatio = canvas.width/canvas.height;
 
-        if(imgRatio > canvasRatio){
-            imgObj.width = canvas.width;
-            imgObj.height = Math.min(canvas.width/imgRatio, 550);
-        }else{
-            imgObj.width = Math.min(imgRatio * canvas.height, 700);
-            imgObj.height = canvas.height;
-        }
+            if(imgRatio > canvasRatio){
+                imgObj.width = canvas.width;
+                imgObj.height = Math.min(canvas.width/imgRatio, 550);
+            }else{
+                imgObj.width = Math.min(imgRatio * canvas.height, 700);
+                imgObj.height = canvas.height;
+            }
 
-		var newImage = new fabric.Image(imgObj, {
-		    width: imgObj.width,
-		    height: imgObj.height,
-		    // Set the center of the new object based on the event coordinates relative
-		    // to the canvas container.
-            left: 0,
-		    top: 0
-		});
+    		var newImage = new fabric.Image(imgObj, {
+    		    width: imgObj.width,
+    		    height: imgObj.height,
+    		    // Set the center of the new object based on the event coordinates relative
+    		    // to the canvas container.
+                left: 0,
+    		    top: 0
+    		});
 
-		canvas.centerObject(newImage);
-		canvas.add(newImage);
-		canvas.renderAll();
-	    };
-	}
-	console.log(this.files);
-	reader.readAsDataURL(this.files[0]);
+    		canvas.centerObject(newImage);
+    		canvas.add(newImage);
+    		canvas.renderAll();
+    	    };
+    	}
+    	console.log(this.files);
+    	reader.readAsDataURL(this.files[0]);
     }
 
+    // change the layer for the selected objects
     var backLayer=$('#back-layer')[0];
     var frontLayer=$('#front-layer')[0];
     backLayer.onclick=function(){

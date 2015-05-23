@@ -1,3 +1,9 @@
+/**
+ * @file slideshowView.js
+ * @author Sisi Wei, 915565877
+ * @date 23 May 15
+ * @description A javascript for the slideshowView
+ */
 $(document).ready(function(){
 
         var u=$(location).attr('href').split('/');
@@ -24,29 +30,34 @@ $(document).ready(function(){
         });
 
     });
+
+    /**
+     * Request the images for the slidsshow
+     * @param index the indec for the current panel
+     * @param panels the panels in the storyflow
+     */
     function chargeImg(index,panels){
-//      $("#main").append("<div>panel src : "+panels.slice(0,index+1).join('/')+"/"+panels[index]+"</div>");
         $("#slide")[0].src=panels.slice(0,index+1).join('/')+"/"+panels[index]+".png";
-	$("#metadata")[0].innerHTML="nothing yet";
-	$.ajax({
-	    type:'GET',
-	    url:panels.slice(0,index+1).join('/')+"/"+panels[index]+".txt",
-	    //	    data{get_param
-	    dataType:'text',
-	    success:function(data){
-		$("#metadata").empty();	
-		$("#metadata")[0].innerHTML=data;
-	    }
-	});
+    	$("#metadata")[0].innerHTML="nothing yet";
+    	$.ajax({
+    	    type:'GET',
+    	    url:panels.slice(0,index+1).join('/')+"/"+panels[index]+".txt",
+    	    //	    data{get_param
+    	    dataType:'text',
+    	    success:function(data){
+    		$("#metadata").empty();	
+    		$("#metadata")[0].innerHTML=data;
+    	    }
+    	});
 	    
     }
     
+    /**
+     * Display the panels
+     * @param panels the panels in the storyflow
+     */
     function display(panels){
-        //$("#main").append("<div>"+panels.join('/')+"</div>");
-
         var index=2;
-
-
 
         var left=$('#left')[0];
         var right=$('#right')[0];
@@ -56,6 +67,7 @@ $(document).ready(function(){
         var intervalTime=$('#interval-time')[0];
         var time=10000;
 
+        // listen to the system's time
         intervalTime.onchange=function(){
             time=this.value*1000;
             $('#interval-time-value')[0].innerHTML = this.value;
@@ -76,6 +88,8 @@ $(document).ready(function(){
             }
         },time);
         var timer=$('#timer')[0];
+
+        //set time control for the slide show
         timer.onclick=function(){
             if(timerOn){
                 timerOn=false;
@@ -96,6 +110,7 @@ $(document).ready(function(){
             }
         };
 
+        // go to the next image
         right.onclick=function(){
             if(index<panels.length-1){
                 index++;
@@ -112,6 +127,7 @@ $(document).ready(function(){
             }
         };
 
+        // go to the previous image
         left.onclick=function(){
             if(index>2){
                 index--;
@@ -127,6 +143,5 @@ $(document).ready(function(){
                 }
             }
         };
-        
 
     }

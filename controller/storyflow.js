@@ -1,6 +1,18 @@
+/**
+ * @file storyflow.js
+ * @author Sisi Wei, 915565877
+ * @date 20 May 15
+ * @description A controller for storyflowView.
+ */
 var fs=require('fs');
 var path=require('path');
 
+
+/**
+ * Create route for storyflowView
+ * @param response an response to the json
+ * @param argv the panel's name
+ */
 this.create = function(response,argv){
     console.log("storyflow/create"+argv);
     response.writeHead(200,{"Content-Type":"text/html"});
@@ -21,7 +33,11 @@ this.create = function(response,argv){
 }
 
 
-
+/**
+ * Create route for storyflowView
+ * @param response an response to the json
+ * @param cb a minimal node.js utility for handling common
+ */
 var createTree=function(panelFrom,cb){
     var current={"name":path.basename(panelFrom),children:[]};
     fs.readdir(panelFrom,function(err,files){
@@ -55,6 +71,11 @@ var createTree=function(panelFrom,cb){
     });
 }
 
+/**
+ * Create json containing the story-tree
+ * @param response an response to the json
+ * @param argv the panel's name
+ */
 this.createjsontree=function(response,argv){
     console.log("storyflow/createjsontree : "+argv[0]);
     var storyflow=__dirname+"/../storyflow/"+argv[0];

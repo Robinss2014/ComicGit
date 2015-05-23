@@ -1,6 +1,20 @@
+/**
+ * @file panel.js
+ * @author Sisi Wei, 915565877
+ * @date 20 May 15
+ * @description A class for panel which contains the path for the panel and also
+ *              provide a method to show the panel.
+ */
 var path=require('path');
 var fs=require('fs');
 var fabric=require('fabric').fabric;
+
+/**
+ * Find the path for a panel
+ * @param panelFrom the starting for the panel
+ * @param panel the panel's name
+ * @cb A minimal node.js utility for handling common
+ */
 var findpathpanel=function(panelFrom,panel,cb){
     console.log("panel/findpathpanel "+panelFrom+" "+panel);
     fs.mkdir(panelFrom,'0755',function(err){
@@ -32,6 +46,11 @@ var findpathpanel=function(panelFrom,panel,cb){
 }
 exports.findpathpanel=findpathpanel;
 
+/**
+ * Find the path for a panel
+ * @param response an response to the panel
+ * @param argv the panel's name
+ */
 this.pathpanel=function(response,argv){
     var storyflow=__dirname+"/../storyflow/"+argv[0],
 	panel=argv[1];
@@ -52,7 +71,11 @@ this.pathpanel=function(response,argv){
 }
 
 
-
+/**
+ * To show a panel
+ * @param response an response to the panel
+ * @param argv the panel's name
+ */
 this.showpanel=function(response,argv){
     var storyflow=__dirname+"/../storyflow/"+argv[0],
 	panel=argv[1];

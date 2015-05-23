@@ -1,3 +1,9 @@
+/**
+ * @file index.js
+ * @author Sisi Wei, 915565877
+ * @date 23 May 15
+ * @description A javascript for the index
+ */
 $(function(){
     $.post("/index/allstoryflow",
         function(storyflow){

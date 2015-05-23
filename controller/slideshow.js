@@ -1,8 +1,19 @@
+/**
+ * @file slideshow.js
+ * @author Sisi Wei, 915565877
+ * @date 20 May 15
+ * @description A controller for slideshowView.
+ */
 var fs=require('fs');
 var path = require('path');
 var fabric=require('fabric').fabric;
 var panelFct=require('./panel');
 
+/**
+ * Create route for slidshowView
+ * @param response an response to the slideshow
+ * @param argv the panel's name
+ */
 this.create = function(response,argv){
     //    console.log("about to create the page editpanel");
     var view ="view/slideshow.html";
