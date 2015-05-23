@@ -282,8 +282,6 @@ $(document).ready(function(){
 	reader.readAsDataURL(this.files[0]);
     }
 
-
-
     var backLayer=$('#back-layer')[0];
     var frontLayer=$('#front-layer')[0];
     backLayer.onclick=function(){
