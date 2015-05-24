@@ -6,7 +6,7 @@
  */
 
 /**
- * Create the route for error
+ * send to the client the error 404 "page not found"
  * @param response the data that will be send to the client
  */
 this.create = function(response){
