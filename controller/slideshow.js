@@ -1,6 +1,6 @@
 /**
  * @file slideshow.js
- * @author Sisi Wei, 915565877
+ * @author Sylvain Ribstein, 915615732
  * @date 20 May 15
  * @description A controller for slideshowView.
  */
@@ -10,9 +10,9 @@ var fabric=require('fabric').fabric;
 var panelFct=require('./panel');
 
 /**
- * Create route for slidshowView
- * @param response an response to the slideshow
- * @param argv the panel's name
+ * stream the slideshow view to the client
+ * @param response the data that will be send to the client
+ * @param argv not use for now, but will be if the project get bigger
  */
 this.create = function(response,argv){
     //    console.log("about to create the page editpanel");
