@@ -1,4 +1,11 @@
-var http = require("http");
+/**
+ * @file server
+ * @author Sylvain Ribstein, 915615732
+ * @date 20 May 15
+ * @description the part that ask to listen to a certain port, and redirect the request to the router
+ */
+ 
+ var http = require("http");
 /*server listening on port 8888
  *route is the function which will route the request reveived 
  *
