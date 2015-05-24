@@ -1,6 +1,10 @@
 var http = require("http");
 /*server listening on port 8888
  *route is the function which will route the request reveived 
+ *
+ *
+ *This is the actual server of the project, this function will receive all the request and call the router to find te response
+ *It also receive the data send by post by the client
  */
 function start(route) {
     function onRequest(request, response) {
