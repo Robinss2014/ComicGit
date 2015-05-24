@@ -1,6 +1,6 @@
 /**
  * @file storyflow.js
- * @author Sisi Wei, 915565877
+ * @author Sylvain Ribstein, 915615732
  * @date 20 May 15
  * @description A controller for storyflowView.
  */
@@ -9,9 +9,9 @@ var path=require('path');
 
 
 /**
- * Create route for storyflowView
- * @param response an response to the json
- * @param argv the panel's name
+ * Stream the storyflow view to the client
+ * @param response the data that will be send to the client
+ * @param argv not use for now, but will if the project get bigger
  */
 this.create = function(response,argv){
     console.log("storyflow/create"+argv);
@@ -34,24 +34,23 @@ this.create = function(response,argv){
 
 
 /**
- * Create route for storyflowView
- * @param response an response to the json
- * @param cb a minimal node.js utility for handling common
+ * Create the tree a specific storyflow 
+ * it's a recursive function
+ * @param panelFrom the panel we are looking at right now
+ * @param cb callback function, so this function can be call asynchronously
  */
 var createTree=function(panelFrom,cb){
     var current={"name":path.basename(panelFrom),children:[]};
     fs.readdir(panelFrom,function(err,files){
-	if(err){
+	if(err){//if the directory do not containt any file we respond just the name of he directory we are right now
 	    cb(current);
 	}else{
-
 	    var direc=files.map(function(file){
 		return path.join(panelFrom,file);
 	    }).filter(function (file){
 		return fs.statSync(file).isDirectory();
 	    });
-	    if(direc.length===0){
-		//delete current.children;
+	    if(direc.length===0){//if the directory do not containt anydirectory we respond just the name of he directory we are right now
 		cb(current);
 	    }
 	    else{
@@ -73,8 +72,8 @@ var createTree=function(panelFrom,cb){
 
 /**
  * Create json containing the story-tree
- * @param response an response to the json
- * @param argv the panel's name
+ * @param response the data that will be send to the client
+ * @param argv storyflow name
  */
 this.createjsontree=function(response,argv){
     console.log("storyflow/createjsontree : "+argv[0]);
