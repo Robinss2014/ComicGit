@@ -1,6 +1,6 @@
 /**
  * @file editpanel.js
- * @author Sisi Wei, 915565877
+ * @author Sylvain Ribstein,915615732
  * @date 20 May 15
  * @description A controller for editpanelView.
  */
@@ -10,9 +10,9 @@ var fabric=require('fabric').fabric;
 var panelFct=require('./panel');
 
 /**
- * Create route for editpanel
- * @param response an response to the editpanel
- * @param argv the panel's name
+ * stream to client the editpanel page
+ * @param response the data that will be send to the client
+ * @param argv not use but can be if the project get bigger
  */
 this.create = function(response,argv){
     //    console.log("about to create the page editpanel");
@@ -35,7 +35,7 @@ this.create = function(response,argv){
  * Save panel into image(.png)
  * @param panelPath the path to find the panel
  * @param data a json for the panel
- * @param cb A minimal node.js utility for handling common
+ * @param cb callback function for savepng, so the function can be use asynchronously
  */
 var savepng=function(panelPath,data,cb){
     var dataArray=JSON.parse(data);
@@ -54,20 +54,20 @@ var savepng=function(panelPath,data,cb){
  * Save panel into JSON
  * @param panelPath the path to find the panel
  * @param data a json for the panel
- * @param cb A minimal node.js utility for handling common
+ * @param cb callback function for savejson, so the function can be use asynchronously
  */
 var savejson=function(panelPath,data,cb){
     var dataArray=JSON.parse(data);
     console.log("editpanel/savejson");
     console.log("canvas : \n"+dataArray[0]);
     console.log("metadata : \n"+dataArray[1]);
-    fs.writeFile(panelPath,JSON.stringify(dataArray[0]),function(err){
+    fs.writeFile(panelPath,JSON.stringify(dataArray[0]),function(err){//save canvas
 	if(err){
 	    console.log("editpanel/savejson error write "+err);
 	    cb(false);
 	}
 	cb(true);
-	fs.writeFile(panelPath+".txt",dataArray[1],function(err){
+	fs.writeFile(panelPath+".txt",dataArray[1],function(err){//save metadata
 	    if(err){
 		console.log("editpanel/savejson error write "+err);
 		cb(false);
@@ -79,9 +79,9 @@ var savejson=function(panelPath,data,cb){
 
 /**
  * Save panel into storyflow
- * @param response an response to the editpanel
- * @param argv the panel's name
- * @param postData the data need to send to server
+ * @param response the data that will be send to the client
+ * @param argv [storyflow,parent panel name, panel name]
+ * @param postData the data reveiced from the client containing the canvas and the metadata
  */
 this.savepanel=function(response,argv,postData){
     var storyflow=__dirname+"/../storyflow/"+argv[0],
