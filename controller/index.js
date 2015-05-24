@@ -7,7 +7,7 @@
 var fs=require('fs');
 
 /**
- * Create the route for index
+ * stream the index view to the client
  * @param response the data that will be send to the client
  * @param argv not use for now, but will be if the project get bigger
  */
