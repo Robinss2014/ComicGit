@@ -1,13 +1,13 @@
 /**
  * @file create.js
- * @author Sisi Wei, 915565877
+ * @author Sylvain Ribstein, 915615732
  * @date 20 May 15
  * @description A controller for error page.
  */
 
 /**
  * Create the route for error
- * @param response an response to the error
+ * @param response the data that will be send to the client
  */
 this.create = function(response){
     console.log("about to create the page error");
