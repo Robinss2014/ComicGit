@@ -1,4 +1,11 @@
-var path=require('path');
+/**
+ * @file router.js
+ * @author Sylvain Ribstein, 915615732
+ * @date 20 May 15
+ * @description contain the router of the server, it's a sort of MVC
+ */
+ 
+ var path=require('path');
 var fs=require('fs');
 var url = require("url");
 /*
