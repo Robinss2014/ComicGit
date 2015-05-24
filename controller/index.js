@@ -1,6 +1,6 @@
 /**
  * @file index.js
- * @author Sisi Wei, 915565877
+ * @author Sylvain Ribstein, 915615732
  * @date 20 May 15
  * @description A controller for index.html.
  */
@@ -8,8 +8,8 @@ var fs=require('fs');
 
 /**
  * Create the route for index
- * @param response an response to the index
- * @param argv the panel's name
+ * @param response the data that will be send to the client
+ * @param argv not use for now, but will be if the project get bigger
  */
 this.create = function(response,argv){
     console.log("about to create the page index");
@@ -25,16 +25,14 @@ this.create = function(response,argv){
 	    var stream = fs.createReadStream(path);
 	    console.log('pipe stream view/index.html');
 	    stream.pipe(response);
-	    console.log("end stream");
-	    //response.end();
 	}
     });
     
 }
 
 /**
- * Find all of the storyflows paths
- * @param response an response to the index
+ * response all the name of all storyflow
+ * @param response tha data that will be send to the client
  */
 this.allstoryflow=function(response){
     allstoryflows(function(err,all){
@@ -53,8 +51,8 @@ this.allstoryflow=function(response){
 
 
 /**
- * Find the path for a storyflow
- * @param cb a minimal node.js utility for handling common
+ * list all the directory that are into the storyflow directory
+ * @param cb callback function, so the function can be call asynchronously
  */
 var allstoryflows=function(cb){
     var storyflow=__dirname+"/../storyflow/";
