@@ -4,18 +4,18 @@ var url = require("url");
 /*
  *route(request,response,postData)
  *this function will differenciate 2 types of request :
- * -ask for a file so stream the file to response
- * -did not ask for a file, so we call the other function controller 
+ * -If the request ask for a file directly, the response will be stream
+ * -If not, it will call the fonction controller 
  */
 function route(request,response,postData) {
     pathname=url.parse(request.url).pathname;
     fs.readFile(__dirname+pathname,function(err,data){
 	console.log("router/route : request "+pathname);
-	if(err){
+	if(err){//if the file do not exist
 	    //console.log(err);
 	    controller(response,pathname,postData);
 	}
-	else{
+	else{//stream the file
 	    console.log("router/route : sending "+pathname);
 	    response.write(data);
 	    response.end();
@@ -39,7 +39,7 @@ function controller(response,pathname,postData) {
     patharray=patharray.slice(1,patharray.length);
     console.log("router/controller : request controller for /" + patharray.join('/'));
     //console.log("patharray : "+patharray.join(' | ')+"\npatharray.length : "+patharray.length);
-    var requireModule="";
+    var requireModule="";//This will save the controller to be load
     if(patharray[0]==""){//if empty we load the index
 	requireModule=require.resolve('./controller/index');
     }
