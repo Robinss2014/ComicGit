@@ -42,8 +42,9 @@ Screenshots:
     The user shall hover over any panel to show some hidden tips:
       1.User shall click on “add” to add a new panel into the story-flow
       2.User shall click on “show” to view the current panel he selected
-  ![storyflow View](https://raw.githubusercontent.com/Robinss2014/ComicGit/master/assets/imgs/storyflowView.png)
+  ![storyflow View](https://raw.githubusercontent.com/Robinss2014/ComicGit/master/assets/imgs/storyflowView1.png)
   
+  ![storyflow View](https://raw.githubusercontent.com/Robinss2014/ComicGit/master/assets/imgs/storyflowView2.png)
   
   Editpanel View:
   
